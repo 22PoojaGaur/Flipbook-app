@@ -34,16 +34,28 @@ class Parser:
             position = GridPos(p[0], p[2]).eval()
             return position
 
-        @self.pg.production('expression : expression DASH expression FILENAME gridpos gridpos')
-        def expression_image_with_pos(p):
+        @self.pg.production('imrange : NUMBER DASH NUMBER')
+        def expression_range(p):
             left = p[0]
             right = p[2]
 
-            im_range = RangeOp(left, right).eval()
-            im_file = FileName(p[3].value).eval()
+            return RangeOp(left, right).eval()
 
-            start = p[4]
-            end = p[5]
+        @self.pg.production('imrange : NUMBER')
+        def expression_single_range(p):
+            return [Number(p[0].value).eval()]
+
+        @self.pg.production('expression : imrange FILENAME gridpos gridpos')
+        def expression_image_with_pos(p):
+            # left = p[0]
+            # right = p[2]
+
+            # im_range = RangeOp(left, right).eval()
+            im_range = p[0]
+            im_file = FileName(p[1].value).eval()
+
+            start = p[2]
+            end = p[3]
 
             for i in im_range:
                 if i not in self.pdf.pdf_img_map.keys():
@@ -51,17 +63,18 @@ class Parser:
 
                 self.pdf.pdf_img_map[i].append((im_file, start, end))
 
-            print(self.pdf.pdf_img_map)
+            #print(self.pdf.pdf_img_map)
 
             return 'position image expression'
 
-        @self.pg.production('expression : expression DASH expression FILENAME')
+        @self.pg.production('expression : imrange FILENAME')
         def expression_range(p):
-            left = p[0]
-            right = p[2]
-
-            im_range = RangeOp(left, right).eval()
-            im_file = FileName(p[3].value).eval()
+            # left = p[0]
+            # right = p[2]
+            #
+            # im_range = RangeOp(left, right).eval()
+            im_range = p[0]
+            im_file = FileName(p[1].value).eval()
 
             for i in im_range:
                 if i not in self.pdf.pdf_img_map.keys():
@@ -69,7 +82,7 @@ class Parser:
 
                 self.pdf.pdf_img_map[i].append((im_file, None, None))
 
-            return ' '.join([str(i) for i in RangeOp(left, right).eval()]) + FileName(p[3]).eval()
+            return ' '.join([str(i) for i in RangeOp(left, right).eval()]) + FileName(p[1]).eval()
 
         @self.pg.error
         def error_handle(token):

@@ -42,7 +42,7 @@ def start(program_name, out_filename):
 
     if extn == 'gif':
         import os
-        command = "convert -alpha deactivate -verbose -delay 20 " + str(fname) + ".pdf " + str(fname) + ".gif"
+        command = "convert -alpha remove -verbose -delay 20 " + str(fname) + ".pdf " + str(fname) + ".gif"
         os.system(command)
 
 

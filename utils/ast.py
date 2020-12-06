@@ -39,8 +39,8 @@ class FileName(BaseBox):
 
 class RangeOp(BaseBox):
     def __init__(self, left, right):
-        self.left = left
-        self.right = right
+        self.left = Number(left.value)
+        self.right = Number(right.value)
 
     def eval(self):
         return [i for i in range(self.left.eval(), self.right.eval()+1)]

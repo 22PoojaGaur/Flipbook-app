@@ -33,6 +33,7 @@ Rules ->
         | NUMBER CROSS NUMBER
         
 <imrange> : NUMBER DASH NUMBER
+           | NUMBER
 
 <gridpose> : NUMBER COMMA NUMBER
 ```
@@ -51,4 +52,8 @@ convert - To generate gif
 3. To use cli version, run `python fc.py --program your_programe.flip --outputfile outputname.gif`, to use gui version, run `python fc-gui.py` and follow instructions.
 4. That's all!
 
-There are multiple demo .flip files in `examples/` folder. To see the demo, you can run - `python fc.py --program examples/example_animate_fruit.flip --outputfile fruit_animate.gif` and checkout the output files generated.
+There are multiple demo .flip files in `examples/` folder. To see the demo, you can run - `python fc.py --program examples/play_catch.flip --outputfile play_catch.gif` and checkout the output files generated.
+
+### Code structure
+- The driver modules `fc.py` and `fc-gui.py` are located in root folder
+- The utility functions created to builder lexer, parser, AST and pdf / gif generation are in `utils` folder
