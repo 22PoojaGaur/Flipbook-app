@@ -40,8 +40,11 @@ Rules ->
 
 ### Libraries used
 rply - To implement lexer, parser and abstract syntax tree.
+
 tkinter - To implement basic gUI
+
 argparse - To handle command line flags
+
 fpdf - To write a pdf file
 
 convert - To generate gif
@@ -49,8 +52,9 @@ convert - To generate gif
 ### Running instructions 
 1. Make sure you have `conda` on your system. (You can choose to use `pip`. The requirements.txt is generated for conda, if you choose to use pip install the packages individually.)
 2. Run `conda create --name flipbook --file requirements.txt` to create the environment and `conda activate flipbook` to activate the environment.
-3. To use cli version, run `python fc.py --program your_programe.flip --outputfile outputname.gif`, to use gui version, run `python fc-gui.py` and follow instructions.
-4. That's all!
+3. Install `convert` tool of `imagemagick`
+4. To use cli version, run `python fc.py --program your_programe.flip --outputfile outputname.gif`, to use gui version, run `python fc-gui.py` and follow instructions.
+5. That's all!
 
 There are multiple demo .flip files in `examples/` folder. To see the demo, you can run - `python fc.py --program examples/play_catch.flip --outputfile play_catch.gif` and checkout the output files generated.
 

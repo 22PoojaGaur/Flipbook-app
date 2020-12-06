@@ -1,35 +1,8 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
-# platform: osx-64
-appdirs=1.4.4=py_0
-appnope=0.1.2=pypi_0
-backcall=0.2.0=pypi_0
-ca-certificates=2020.10.14=0
-certifi=2020.11.8=py39hecd8cb5_0
-decorator=4.4.2=pypi_0
 fpdf=1.7.2=pypi_0
-jedi=0.17.2=pypi_0
-libcxx=10.0.0=1
-libedit=3.1.20191231=h1de35cc_1
-libffi=3.3=hb1e8313_2
-ncurses=6.2=h0a44026_1
-openssl=1.1.1h=haf1e3a3_0
-parso=0.7.1=pypi_0
-pexpect=4.8.0=pypi_0
-pickleshare=0.7.5=pypi_0
-pip=20.3=py39hecd8cb5_0
-prompt-toolkit=3.0.8=pypi_0
-ptyprocess=0.6.0=pypi_0
-pygments=2.7.2=pypi_0
 python=3.9.0=h88f2d9e_2
 readline=8.0=h1de35cc_0
 rply=0.7.7=py_0
 setuptools=50.3.2=py39hecd8cb5_2
-sqlite=3.33.0=hffcf06c_0
 tk=8.6.10=hb0a8c7a_0
-traitlets=5.0.5=pypi_0
-tzdata=2020d=h14c3975_0
-wcwidth=0.2.5=pypi_0
-wheel=0.36.0=pyhd3eb1b0_0
-xz=5.2.5=h1de35cc_0
-zlib=1.2.11=h1de35cc_3
