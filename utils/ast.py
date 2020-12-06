@@ -11,6 +11,24 @@ class Number(BaseBox):
         return int(self.value)
 
 
+class Grid(BaseBox):
+    def __init__(self, rows, cols):
+        self.cols = Number(cols.value).eval()
+        self.rows = Number(rows.value).eval()
+
+    def eval(self):
+        return tuple((self.rows, self.cols))
+
+
+class GridPos(BaseBox):
+    def __init__(self, row, col):
+        self.row = Number(row.value).eval()
+        self.col = Number(col.value).eval()
+
+    def eval(self):
+        return tuple((self.row, self.col))
+
+
 class FileName(BaseBox):
     def __init__(self, value):
         self.value = value
