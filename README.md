@@ -8,11 +8,11 @@
 look at `Flipbook_problem.pdf` to see the detailed problem statement.
 
 ### Broad Solution Idea
-- We implement compiler for a language we defined for flipbook generation.
+- The repository implements a compiler for a language defined for flipbook generation.
 - The flipbooks can be specified in two ways
 -- if image is position insensitive (i.e either there is single image or the image is not going to move during flipbook). User can give just range and image name
 -- if image can vary in position or multiple images are to be placed, user can provide a grid size. This way the pdf page is treated as a grid and for each image the user can provide grid positions to place the image in.
-- We give a simple gUI tool implemented in Tkinter to run the program through GUI.
+- The project also give a simple GUI tool implemented in Tkinter to run the program through GUI.
 
 ### Product Progress
 look at `Flipbook_progress.pdf` to see the product iterations and future possible iterations.
