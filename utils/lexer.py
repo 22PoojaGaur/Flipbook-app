@@ -1,5 +1,5 @@
 # author @22PoojaGaur
-from tokens import Tokens
+from utils.tokens import Tokens
 
 from rply import LexerGenerator
 

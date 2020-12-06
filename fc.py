@@ -2,9 +2,9 @@
 
 import argparse
 
-from generators import MyPDF
-from lexer import Lexer
-from parser import Parser
+from utils.generators import MyPDF
+from utils.lexer import Lexer
+from utils.parser import Parser
 
 
 class ArgParse:

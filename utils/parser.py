@@ -1,8 +1,8 @@
 # author @22PoojaGaur
 
 from rply import ParserGenerator
-from ast import *
-from lexer import Lexer
+from utils.ast import *
+from utils.lexer import Lexer
 
 
 class Parser:
