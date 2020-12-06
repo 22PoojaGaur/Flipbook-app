@@ -1,3 +1,5 @@
+*The demo video also present in repository by the name: Demo_video.mkv. Video is also available at https://youtu.be/KLvsfGfFgrU (only accessible by this link)*
+
 # Flipbook App
 
 ###### _This repository contains programming task given by Hasura company._
