@@ -45,22 +45,14 @@ class Parser:
             start = p[4]
             end = p[5]
 
-            page_img_map = {}
-
             for i in im_range:
-                if i not in page_img_map.keys():
-                    page_img_map[i] = []
+                if i not in self.pdf.pdf_img_map.keys():
+                    self.pdf.pdf_img_map[i] = []
 
-                page_img_map[i].append((im_file, start, end))
+                self.pdf.pdf_img_map[i].append((im_file, start, end))
 
-            for i in sorted(page_img_map.keys()):
-                self.pdf.add_page()
+            print(self.pdf.pdf_img_map)
 
-                for (im_file, start, end) in page_img_map[i]:
-                    path = './imgs/' + im_file
-                    self.pdf.add_image_with_pos(path, im_file.split('.')[1], start, end)
-
-            #return ' '.join([str(i) for i in im_range]) + im_file + ' '.join([str(i) in start]) + ' '.join([str(i) in end])
             return 'position image expression'
 
         @self.pg.production('expression : expression DASH expression FILENAME')
@@ -72,9 +64,10 @@ class Parser:
             im_file = FileName(p[3].value).eval()
 
             for i in im_range:
-                self.pdf.add_page()
-                path = './imgs/' + im_file
-                self.pdf.add_image(path, im_file.split('.')[1])
+                if i not in self.pdf.pdf_img_map.keys():
+                    self.pdf.pdf_img_map[i] = []
+
+                self.pdf.pdf_img_map[i].append((im_file, None, None))
 
             return ' '.join([str(i) for i in RangeOp(left, right).eval()]) + FileName(p[3]).eval()
 
@@ -89,7 +82,7 @@ class Parser:
 if __name__ == '__main__':
     lex = Lexer().lg.build()
 
-    #tokens = lex.lex('13-28 hello.png')
+    # tokens = lex.lex('13-28 hello.png')
     tokens = lex.lex('4 X 4')
 
     pg = Parser()

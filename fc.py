@@ -20,31 +20,38 @@ class Args:
     pass
 
 
+def start(program_name, out_filename):
+    fname = out_filename.split('.')[0]
+    extn = out_filename.split('.')[1]
+
+    pfile = open(program_name, 'r')
+
+    pdf = MyPDF()
+
+    lex = Lexer().lg.build()
+    pg = Parser(pdf=pdf)
+    pg.parse()
+    parse = pg.get_parser()
+
+    for cmd in pfile.readlines():
+        print(parse.parse(lex.lex(cmd)))
+
+    pdf.print_to_pdf()
+
+    pdf.pdf.output(str(fname) + ".pdf", 'F')
+
+    if extn == 'gif':
+        import os
+        command = "convert -alpha deactivate -verbose -delay 20 " + str(fname) + ".pdf " + str(fname) + ".gif"
+        os.system(command)
+
+
 if __name__ == '__main__':
 
     args = Args()
     parse_args = ArgParse().parser.parse_args(namespace=args)
 
-    if args.outputfile is not None:
-        print('output file name is ', args.outputfile)
+    if args.outputfile is None:
+        raise ValueError('Output file name required')
 
-        out_filename = str(args.outputfile)
-        extn = out_filename.split('.')[1]
-
-        pfile = open(args.program, 'r')
-
-        if extn == 'pdf':  # generate pdf
-            pdf = MyPDF()
-
-            lex = Lexer().lg.build()
-            pg = Parser(pdf=pdf)
-            pg.parse()
-            parse = pg.get_parser()
-
-            for cmd in pfile.readlines():
-                print(parse.parse(lex.lex(cmd)))
-
-            pdf.pdf.output(out_filename, 'F')
-
-        elif extn == 'gif':
-            pass  # generate gif
+    start(args.program, args.outputfile)

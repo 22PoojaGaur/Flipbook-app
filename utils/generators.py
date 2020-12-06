@@ -18,6 +18,8 @@ class MyPDF:
         self.C = None
         self.R = None
 
+        self.pdf_img_map = {}
+
     def add_page(self):
         self.pdf.add_page()
 
@@ -40,9 +42,22 @@ class MyPDF:
         x = (start[1] * float(self.width)) / self.C
         y = (start[0] * float(self.height)) / self.R
 
-        #self.pdf.set_xy(x, y)
+        # self.pdf.set_xy(x, y)
         self.pdf.image(name, type=type, x=x, y=y, w=img_width, h=img_height)
 
     def set_grid_dims(self, dims):
         self.R = dims[0]
         self.C = dims[1]
+
+    def print_to_pdf(self):
+
+        for i in sorted(self.pdf_img_map.keys()):
+            self.pdf.add_page()
+
+            for (im_file, start, end) in self.pdf_img_map[i]:
+                path = './imgs/' + im_file
+
+                if start is not None:
+                    self.add_image_with_pos(path, im_file.split('.')[1], start, end)
+                else:
+                    self.add_image(path, im_file.split('.')[1])
